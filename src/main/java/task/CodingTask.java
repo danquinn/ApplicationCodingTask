@@ -17,9 +17,9 @@ public class CodingTask {
 		if (isBuzzNumber) {
 			returnValue += " buzz";
 		}if(isBuzzNumber && isFizzNumber && isDeluxeNumber){
-			returnValue+= " deluxe";
+			returnValue+= getDeluxeNumberOutput(number);
 		}else if(isDeluxeNumber){
-			returnValue = "deluxe";
+			returnValue = getDeluxeNumberOutput(number);
 		}
 		else if(!isBuzzNumber &&!isFizzNumber &&!isDeluxeNumber) {
 			returnValue = number.toString();
@@ -27,6 +27,16 @@ public class CodingTask {
 		return returnValue.trim();
 	}
 	
+	private static String getDeluxeNumberOutput(Integer number) {
+		String returnValue = "";
+		if(number%2==0){
+			returnValue =  "deluxe";
+		}else{
+			returnValue = "fake deluxe"; 
+		}
+		return returnValue;
+	}
+
 	private static boolean isDeluxeNumber(Integer number) {
 		String numberString = number.toString();
 		String firstDigit = String.valueOf(numberString.charAt(0));

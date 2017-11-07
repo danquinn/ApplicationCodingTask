@@ -75,9 +75,9 @@ public class CodingTaskTest
     }
     
     @Test
-    public void fizzBuzz_GreaterThanTenAndDigitsAreIdentical_deluxeIsReturned(){
+    public void fizzBuzz_greaterThanTenAndDigitsAreIdenticalEvenNumner_deluxeIsReturned(){
     	//Arrange
-    	int greatherThanTenDigitsAreIdentical = 11;
+    	int greatherThanTenDigitsAreIdentical =66;
     	//Act
 		String result = CodingTask.fizzBuzz(greatherThanTenDigitsAreIdentical);
     	//Assert
@@ -86,14 +86,16 @@ public class CodingTaskTest
     }
     
     @Test
-    public void fizzBuzz_containsIdenticalDigitsAndIsGreatherThanTenMutipleOfFiveAndThree_fizzBuzzDeluxeIsReturned(){
+    public void fizzBuzz_greatherThanTenIdenticalDigitsOddNumber_fizzBuzzDeluxeIsReturned(){
     	//Arrange
-    	int identicalDigitsGreatherThanTenMultipleOfBoth = 555;
+    	int identicalDigitsGreatherThanTenOddNumber = 55;
     	//Act
-		String result = CodingTask.fizzBuzz(identicalDigitsGreatherThanTenMultipleOfBoth);
+		String result = CodingTask.fizzBuzz(identicalDigitsGreatherThanTenOddNumber);
     	//Assert
-    	String expected ="fizz buzz deluxe";
+    	String expected ="fake deluxe";
     	assertEquals(expected, result);;
     }
+    
+  
     
 }
