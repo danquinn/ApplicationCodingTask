@@ -10,7 +10,11 @@ import org.junit.Test;
 public class CodingTaskTest 
     
 {
-    @Test
+    private static final String EXPECTED_BUZZ_DELUXE_RESULT = "buzz deluxe";
+	private static final String EXPECTED_FIZZ_RESULT = "fizz";
+	private static final String EXPECTED_DELUXE_RESULT = "deluxe";
+	private static final String EXPECTED_FAKE_DELUXE_RESULT = "fake deluxe";
+	@Test
     public void fizzBuzz_numberOne_OneIsReturned(){
     	//Act
     	String result = CodingTask.fizzBuzz(1);
@@ -20,37 +24,27 @@ public class CodingTaskTest
     }
     
     @Test
-    public void fizzBuzz_multipleOfThree_fizzIsReturned(){
+    public void fizzBuzz_multipleOfThreeDoesNotContainThree_fizzIsReturned(){
     	//Arrange
-    	int multipleOfThree = 3;
+    	int multipleOfThreeDoesNotContainThree = 9;
     	//Act
-		String result = CodingTask.fizzBuzz(multipleOfThree);
+		String result = CodingTask.fizzBuzz(multipleOfThreeDoesNotContainThree);
     	//Assert
-    	String expected ="fizz";
+    	String expected =EXPECTED_FIZZ_RESULT;
     	assertEquals(expected, result);;
     }
     
     @Test
-    public void fizzBuzz_multipleOfFive_buzzIsReturned(){
+    public void fizzBuzz_multipleOfFiveContainsFive_buzzIsReturned(){
     	//Arrange
     	int multipleOfFive = 5;
     	//Act
     	String result = CodingTask.fizzBuzz(multipleOfFive);
     	//Assert
-    	String expected ="buzz";
+		String expected =EXPECTED_BUZZ_DELUXE_RESULT;
     	assertEquals(expected, result);;
     }
     
-    @Test
-    public void fizzBuzz_multipleOfThreeAndFive_fizzBuzzIsReturned(){
-    	//Arrange
-    	int multipleOfThreeAndFive = 15;
-    	//Act
-    	String result = CodingTask.fizzBuzz(multipleOfThreeAndFive);
-    	//Assert
-    	String expected ="fizz buzz";
-    	assertEquals(expected, result);;
-    }
     
     @Test
     public void fizzBuzz_containsThreeNotMultipleOfThree_fizzIsReturned(){
@@ -59,20 +53,11 @@ public class CodingTaskTest
     	//Act
 		String result = CodingTask.fizzBuzz(containsThreeNonMultipleOfThree);
     	//Assert
-    	String expected ="fizz";
-    	assertEquals(expected, result);;
+    	String expteced = EXPECTED_FIZZ_RESULT;
+    	assertEquals(expteced, result);;
     }
     
-    @Test
-    public void fizzBuzz_containsThreeAndFiveNotMultipleOfEither_fizzBuzzIsReturned(){
-    	//Arrange
-    	int containsThreeAndFiveNotMultipleOfEither = 353;
-    	//Act
-		String result = CodingTask.fizzBuzz(containsThreeAndFiveNotMultipleOfEither);
-    	//Assert
-    	String expected ="fizz buzz";
-    	assertEquals(expected, result);;
-    }
+   
     
     @Test
     public void fizzBuzz_greaterThanTenAndDigitsAreIdenticalEvenNumner_deluxeIsReturned(){
@@ -81,18 +66,31 @@ public class CodingTaskTest
     	//Act
 		String result = CodingTask.fizzBuzz(greatherThanTenDigitsAreIdentical);
     	//Assert
-    	String expected ="deluxe";
-    	assertEquals(expected, result);;
+    	String expected =EXPECTED_DELUXE_RESULT;
+    	assertEquals(expected, result);
     }
     
     @Test
-    public void fizzBuzz_greatherThanTenIdenticalDigitsOddNumber_fizzBuzzDeluxeIsReturned(){
+    public void fizzBuzz_greatherThanTenIdenticalDigitsOddNumber_fakeDeluxeIsReturned(){
     	//Arrange
     	int identicalDigitsGreatherThanTenOddNumber = 55;
     	//Act
 		String result = CodingTask.fizzBuzz(identicalDigitsGreatherThanTenOddNumber);
     	//Assert
-    	String expected ="fake deluxe";
+    	String expected =EXPECTED_FAKE_DELUXE_RESULT;
+    	assertEquals(expected, result);;
+    }
+    
+    
+    
+    @Test
+    public void fizzBuzz_oddNumberMultipleOfThreeGreaterThanTenContainsThree_fizzDeluxeIsReturned1(){
+    	//Arrange
+    	int containsThreeMultipleOfThree = 333;
+    	//Act
+		String result = CodingTask.fizzBuzz(containsThreeMultipleOfThree);
+    	//Assert
+    	String expected =EXPECTED_FAKE_DELUXE_RESULT;
     	assertEquals(expected, result);;
     }
     
