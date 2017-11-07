@@ -9,17 +9,31 @@ public class CodingTask {
 		String returnValue = "";
 		boolean isFizzNumber = isFizzNumber(number);
 		boolean isBuzzNumber = isBuzzzNumber(number);
+		boolean isDeluxeNumber= isDeluxeNumber(number);
+		
 		if (isFizzNumber) {
 			returnValue = "fizz";
 		}
 		if (isBuzzNumber) {
 			returnValue += " buzz";
-		} else if(!isBuzzNumber &&!isBuzzNumber ) {
+		}if(isBuzzNumber && isFizzNumber && isDeluxeNumber){
+			returnValue+= " deluxe";
+		}else if(isDeluxeNumber){
+			returnValue = "deluxe";
+		}
+		else if(!isBuzzNumber &&!isFizzNumber &&!isDeluxeNumber) {
 			returnValue = number.toString();
 		}
 		return returnValue.trim();
 	}
 	
+	private static boolean isDeluxeNumber(Integer number) {
+		String numberString = number.toString();
+		String firstDigit = String.valueOf(numberString.charAt(0));
+		String identicalCheck = numberString.replaceAll(firstDigit, "");
+		return identicalCheck.length()==0 && number >10;
+	}
+
 	private static boolean isFizzNumber(Integer numberToCheck){
 		return checkNumber(numberToCheck,3);
 	}
