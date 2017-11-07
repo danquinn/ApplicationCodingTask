@@ -7,16 +7,33 @@ package task;
 public class CodingTask {
 	public static String fizzBuzz(Integer number) {
 		String returnValue = "";
-		boolean multipleOfThree = number % 3 == 0;
-		boolean multipleOfFive = number % 5 == 0;
-		if (multipleOfThree) {
+		
+
+		boolean isFizzNumber = isFizzNumber(number);
+		boolean isBuzzNumber = isBuzzzNumber(number);
+		if (isFizzNumber) {
 			returnValue = "fizz";
 		}
-		if (multipleOfFive) {
+		if (isBuzzNumber) {
 			returnValue += " buzz";
-		} else if(!multipleOfFive && !multipleOfThree) {
+		} else if(!isBuzzNumber &&!isBuzzNumber ) {
 			returnValue = number.toString();
 		}
 		return returnValue.trim();
+	}
+	
+	private static boolean isFizzNumber(Integer numberToCheck){
+		return checkNumber(numberToCheck,3);
+	}
+	
+	private static boolean isBuzzzNumber(Integer numberToCheck){
+		return checkNumber(numberToCheck,5);
+	}
+
+	private static boolean checkNumber(Integer numberToCheck,Integer divisorAndDigitToCheck) {
+		boolean isMultiple = numberToCheck % divisorAndDigitToCheck == 0;
+		String numberString  = numberToCheck.toString();
+		boolean containsDigit = numberString.contains(divisorAndDigitToCheck.toString());
+		return isMultiple || containsDigit; 		
 	}
 }
