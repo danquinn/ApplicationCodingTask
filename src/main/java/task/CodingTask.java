@@ -7,8 +7,6 @@ package task;
 public class CodingTask {
 	public static String fizzBuzz(Integer number) {
 		String returnValue = "";
-		
-
 		boolean isFizzNumber = isFizzNumber(number);
 		boolean isBuzzNumber = isBuzzzNumber(number);
 		if (isFizzNumber) {
