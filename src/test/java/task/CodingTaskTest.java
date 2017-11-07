@@ -1,38 +1,48 @@
 package task;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import static org.junit.Assert.*;
+
+import org.junit.Test;
 
 /**
  * Unit test for simple App.
  */
 public class CodingTaskTest 
-    extends TestCase
+    
 {
-    /**
-     * Create the test case
-     *
-     * @param testName name of the test case
-     */
-    public CodingTaskTest( String testName )
-    {
-        super( testName );
+    @Test
+    public void fizzBuzz_InputIsNumberOne_OneIsReturned(){
+    	//Act
+    	String result = CodingTask.fizzBuzz(1);
+    	String expected ="1";
+    	//Assert
+    	assertEquals(expected, result);;
     }
-
-    /**
-     * @return the suite of tests being tested
-     */
-    public static Test suite()
-    {
-        return new TestSuite( CodingTaskTest.class );
+    
+    @Test
+    public void fizzBuzz_inputIsThree_fizzIsReturned(){
+    	//Act
+    	String result = CodingTask.fizzBuzz(3);
+    	//Assert
+    	String expected ="fizz";
+    	assertEquals(expected, result);;
     }
-
-    /**
-     * Rigourous Test :-)
-     */
-    public void testApp()
-    {
-        assertTrue( true );
+    
+    @Test
+    public void fizzBuzz_inputIsFive_buzzIsReturned(){
+    	//Act
+    	String result = CodingTask.fizzBuzz(5);
+    	//Assert
+    	String expected ="buzz";
+    	assertEquals(expected, result);;
+    }
+    
+    @Test
+    public void fizzBuzz_inputIsFifteen_fizzBuzzIsReturned(){
+    	//Act
+    	String result = CodingTask.fizzBuzz(15);
+    	//Assert
+    	String expected ="fizz buzz";
+    	assertEquals(expected, result);;
     }
 }
