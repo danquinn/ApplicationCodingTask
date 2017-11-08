@@ -5,29 +5,59 @@ package task;
  *
  */
 public class CodingTask {
+
 	public static String fizzBuzz(Integer number) {
 		String returnValue = "";
-		boolean isFizzNumber = isFizzNumber(number);
-		boolean isBuzzNumber = isBuzzNumber(number);
+		boolean fizzNumber = isFizzNumber(number);
+		boolean buzzNumber = isBuzzNumber(number);
 		boolean isDeluxeNumber= isDeluxeNumber(number);
+		boolean fizzDeluxe = isFizzDeluxeNumber(number);
+		boolean buzzDeluxe = isBuzzDeluxeNumber(number);
 		
-		if (isFizzNumber) {
+		if (fizzNumber) {
 			returnValue = "fizz";
-			if(isFizzDeluxeNumber(number)){
-				returnValue +=" deluxe";
+		}else if(fizzDeluxe){
+			returnValue = "fizz deluxe";
+		}
+		if (buzzNumber) {
+			returnValue += " buzz";
+		}else if(buzzDeluxe){
+			returnValue += " buzz deluxe";
+		}else if(isDeluxeNumber){
+			if(fizzNumber && buzzNumber ){
+				returnValue+= getDeluxeNumberOutput(number);
+			}else{
+				returnValue = getDeluxeNumberOutput(number);
 			}
 		}
-		if (isBuzzNumber) {
-			returnValue += " buzz deluxe";
-		}if(isBuzzNumber && isFizzNumber && isDeluxeNumber){
-			returnValue+= getDeluxeNumberOutput(number);
-		}else if(isDeluxeNumber){
-			returnValue = getDeluxeNumberOutput(number);
-		}
-		else if(!isBuzzNumber &&!isFizzNumber &&!isDeluxeNumber) {
-			returnValue = number.toString();
+		else if(!buzzDeluxe &&!fizzDeluxe &&!isDeluxeNumber &&!fizzNumber&&!buzzNumber) {
+			returnValue = numberToString(number);
 		}
 		return returnValue.trim();
+	}
+
+	/**
+	 * @param number
+	 * @return
+	 */
+	protected static String numberToString(Integer number) {
+		return number.toString();
+	}
+
+	/**
+	 * @param number
+	 * @return
+	 */
+	protected static boolean isFizzNumber(Integer number) {
+		return containsDigit(number, 3)^isMultiple(number, 3);
+	}
+	
+	/**
+	 * @param number
+	 * @return
+	 */
+	protected static boolean isBuzzNumber(Integer number) {
+		return containsDigit(number, 5)^isMultiple(number, 5);
 	}
 	
 	private static String getDeluxeNumberOutput(Integer number) {
@@ -41,46 +71,35 @@ public class CodingTask {
 	}
 
 	private static boolean isDeluxeNumber(Integer number) {
-		String numberString = number.toString();
-		String firstDigit = String.valueOf(numberString.charAt(0));
-		String identicalCheck = numberString.replaceAll(firstDigit, "");
-		return identicalCheck.length()==0 && number >10;
+		boolean isDeluxe;
+		if (number <= 10) {
+			isDeluxe = false;
+		} else {
+			String numberString = numberToString(number);
+			String firstDigit = String.valueOf(numberString.charAt(0));
+			String identicalCheck = numberString.replaceAll(firstDigit, "");
+			isDeluxe = identicalCheck.length() == 0;
+		}
+		return isDeluxe;
 	}
 
-	private static boolean isFizzNumber(Integer numberToCheck){
-		return checkFizzOrBuzz(numberToCheck,3);
-	}
-	
-	private static boolean isBuzzNumber(Integer numberToCheck){
-		return checkFizzOrBuzz(numberToCheck,5);
+	private static boolean isFizzDeluxeNumber(Integer numberToCheck){
+		return checkFizzDeluxeOrBuzzDeluxe(numberToCheck,3);
 	}
 	
 	private static boolean isBuzzDeluxeNumber(Integer numberToCheck){
 		return checkFizzDeluxeOrBuzzDeluxe(numberToCheck,5);
 	}
-	
-	private static boolean isFizzDeluxeNumber(Integer numberToCheck){
-		return checkFizzDeluxeOrBuzzDeluxe(numberToCheck,3);
-	}
 
-	private static boolean checkFizzOrBuzz(Integer numberToCheck,Integer divisorAndDigitToCheck) {
-		boolean isMultiple = isMultiple(numberToCheck, divisorAndDigitToCheck);
-		boolean containsDigit = containsDigit(numberToCheck, divisorAndDigitToCheck);
-		return isMultiple || containsDigit; 		
-	}
-	
 	private static boolean checkFizzDeluxeOrBuzzDeluxe(Integer numberToCheck,Integer divisorAndDigitToCheck) {
 		boolean isMultiple = isMultiple(numberToCheck, divisorAndDigitToCheck);
-		if(isMultiple && numberToCheck==5){
-			return true;
-		}
 		boolean containsDigit = containsDigit(numberToCheck, divisorAndDigitToCheck);
 		return isMultiple && containsDigit; 		
 	}
 
 	private static boolean containsDigit(Integer numberToCheck, Integer divisorAndDigitToCheck) {
-		String numberString  = numberToCheck.toString();
-		boolean containsDigit = numberString.contains(divisorAndDigitToCheck.toString());
+		String numberString  = numberToString(numberToCheck);
+		boolean containsDigit = numberString.contains(numberToString(divisorAndDigitToCheck));
 		return containsDigit;
 	}
 
